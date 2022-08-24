@@ -21,5 +21,4 @@ class SmokeTests(object):
         self.driver.find_element(*self.elements.username).send_keys('JulieTXTeacher')
         self.driver.find_element(*self.elements.password).send_keys('Password1')
         self.driver.find_element(*self.elements.loginButton).click()
-        time.sleep(10)
 

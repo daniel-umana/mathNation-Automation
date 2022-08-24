@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from MathNationSections.modes import *
 from MathNationSections.smokeTest import *
-# import HtmlTestRunner
+import HtmlTestRunner
 import unittest
 import os
 # import time
@@ -61,7 +61,9 @@ class MathNation(unittest.TestCase):
     @unittest.skipUnless(RunThis, "Test not run this time")
     def test_01(self):
         self.enterLink.enter_testing_link()
+        self.driver.save_screenshot("Screenshots/Login_Window.png")
         self.smokeTests.enter_as_tutor()
+        self.driver.save_screenshot("Screenshots/Initial_Window.png")
 
     # Exit browser
     def tearDown(self):
@@ -69,5 +71,5 @@ class MathNation(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    # unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='Reports'))
-    unittest.main()
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='Reports'))
+    # unittest.main()
