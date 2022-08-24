@@ -1,0 +1,17 @@
+<data>
+    <configuration>
+        # Possible values:
+        #   https://testing.algebranation.com/authentication?skip_redirect=1
+        <testingURL>https://testing.algebranation.com/authentication?skip_redirect=1</testingURL>
+        # Possible values:
+        #   https://staging.algebranation.com/authentication?skip_redirect=1
+        <stagingURL>https://staging.algebranation.com/authentication?skip_redirect=1</stagingURL>
+        # Possible values:
+        #   chrome
+        #   firefox
+        #   edge
+        #   safari
+        #   opera
+        <browser>chrome</browser>
+    </configuration>
+</data>
