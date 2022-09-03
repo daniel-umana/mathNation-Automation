@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from MathNationSections.modes import *
-from MathNationSections.smokeTest import *
+from MathNationSections.initialTests import *
 import HtmlTestRunner
 import unittest
 import os
@@ -30,7 +30,7 @@ class MathNation(unittest.TestCase):
         # self.run_session(self.caps)
         self.driver.maximize_window()
         self.enterLink = EnterLink(self.driver)
-        self.smokeTests = SmokeTests(self.driver)
+        self.initial = InitialTests(self.driver)
 
     # In order to run in BrowserStack
     def run_session(self, desired_cap):
@@ -55,15 +55,17 @@ class MathNation(unittest.TestCase):
         opt.add_experimental_option("excludeSwitches", ['enable-automation'])
 
         # Chrome is opened with Max Window and defined init parameters
-        self.driver = webdriver.Chrome(chrome_options=opt, executable_path='chromedriver.exe')
+        self.driver = webdriver.Chrome(options=opt, executable_path='chromedriver.exe')
 
     # TEST CASES
     @unittest.skipUnless(RunThis, "Test not run this time")
     def test_01(self):
-        self.enterLink.enter_testing_link()
+        self.enterLink.enter_staging_link()
         self.driver.save_screenshot("Screenshots/Login_Window.png")
-        self.smokeTests.enter_as_tutor()
+        self.initial.login('--TX--', 'JulieTXStudent1', 'Password1')
         self.driver.save_screenshot("Screenshots/Initial_Window.png")
+        self.initial.play_video_current_subject_select_expert_first()
+        self.driver.save_screenshot("Screenshots/Video_Tile.png")
 
     # Exit browser
     def tearDown(self):
@@ -71,5 +73,5 @@ class MathNation(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='Reports'))
-    # unittest.main()
+    # unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='Reports'))
+    unittest.main()
